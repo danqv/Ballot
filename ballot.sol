@@ -44,6 +44,7 @@ contract Campaign {
         require(msg.value > minimumContribution);
 
         approvers[msg.sender] = true;
+// khi số người tham gia tăng lên thì :  
         approversCount++;
     }
 
@@ -68,14 +69,20 @@ contract Campaign {
         request.approvals[msg.sender] = true;
         request.approvalCount++;
     }
-
+     //135.Finalizing a request (hoàn tất 1 yêu cầu) :
+        // a. hoàn tất với yêu cầu cụ thể nào? ---> uint index
     function finalizeRequest(uint index) public restricted {
-        Request storage request = requests[index];
+        Request storage request = requests[index]; //lập cái này để thay thế các requests[index] = request
 
+    // nhiều hơn 1/2 số lượng approvers đồng ý thì mới được phê duyệt chi tiền cho vendor
         require(request.approvalCount > (approversCount / 2));
+    //2. làm 1 số kiểm tra cơ bản :
+    // a.đảm bảo yêu cầu này chưa được đánh dấu là hoàn thành 
         require(!request.complete);
 
+    //sau khi cập nhật số tiền đó cho người nhận  
         request.recipient.transfer(request.value);
+    //đảm bảo rằng yều cầu chưa hoàn thành đó thành hiện thực
         request.complete = true;
     }
 }
