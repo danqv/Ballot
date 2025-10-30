@@ -27,6 +27,7 @@ contract Campaign {
     address public manager;
     uint public minimumContribution;
     mapping(address => bool) public approvers;
+//theo dõi số người tham gia trong hợp đồng này
     uint public approversCount;
 
     modifier restricted() {
