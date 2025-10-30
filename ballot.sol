@@ -63,10 +63,14 @@ contract Campaign {
     function approveRequest(uint index) public {
         Request storage request = requests[index];
 
+    //Đảm bảo người gửi có quyền phê duyệt (là người đóng góp approver).
         require(approvers[msg.sender]);
+    //Đảm bảo người gửi chưa từng phê duyệt yêu cầu này trước đó (ngăn chặn việc bỏ phiếu hai lần).
         require(!request.approvals[msg.sender]);
 
+    //xác nhận rằng người dùng này đã đồng ý phê duyệt yêu cầu.
         request.approvals[msg.sender] = true;
+    //sẽ tăng số lượng phiếu phê duyệt đã nhận lên 1.
         request.approvalCount++;
     }
      //135.Finalizing a request (hoàn tất 1 yêu cầu) :
