@@ -56,7 +56,7 @@ contract Campaign {
            complete: false,
            approvalCount: 0
         });
-
+// đưa newRequest từ memory vào storage
         requests.push(newRequest);
     }
 
