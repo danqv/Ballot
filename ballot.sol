@@ -84,7 +84,7 @@ contract Campaign {
     // a.đảm bảo yêu cầu này chưa được đánh dấu là hoàn thành 
         require(!request.complete);
 
-    //sau khi cập nhật số tiền đó cho người nhận  
+    //sau đó, cập nhật số tiền đó cho người nhận  
         request.recipient.transfer(request.value);
     //đảm bảo rằng yều cầu chưa hoàn thành đó thành hiện thực
         request.complete = true;
