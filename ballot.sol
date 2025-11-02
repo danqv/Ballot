@@ -42,7 +42,7 @@ contract Campaign {
 
     function contribute() public payable {
         require(msg.value > minimumContribution);
-    // Ghi nhận việc đóng góp/phê duyệt
+    // Ghi nhận việc đóng góp để trở thành người phê duyệt
         approvers[msg.sender] = true;
     // khi số người tham gia tăng lên thì :  
         approversCount++;
